@@ -1,16 +1,30 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Enable static export
+  output: 'export',
+  
+  // Disable image optimization for static export
+  images: {
+    unoptimized: true,
+  },
+  
+  // Configure trailing slash for static hosting
+  trailingSlash: true,
+  
+  // Disable server-side features for static export
   eslint: {
-    // Disable ESLint during builds
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Disable TypeScript errors during builds (for development)
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // Enable TypeScript checking for production
   },
+  
+  // Disable server-side rendering features
   experimental: {
-    // Disable strict mode for development
     forceSwcTransforms: true,
   },
+  
+  // Configure static export directory
+  distDir: '.next',
 };

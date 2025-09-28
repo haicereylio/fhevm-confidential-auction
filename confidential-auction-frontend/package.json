@@ -5,15 +5,18 @@
   "license": "BSD-3-Clause-Clear",
   "description": "Confidential Auction System Frontend - Privacy-preserving auctions with FHEVM",
   "scripts": {
-    "clean": "rimraf .next",
+    "clean": "rimraf .next out",
     "dev:mock": "npm run ishhrunning && npm run clean && npm run genabi && next dev --turbopack",
     "dev": "npm run clean && npm run genabi && next dev --turbopack",
     "dev-webpack": "npm run clean && npm run genabi && next dev",
     "genabi": "node ./scripts/genabi.mjs",
     "ishhrunning": "node ./scripts/is-hardhat-node-running.mjs",
     "build": "next build",
+    "build:static": "npm run genabi && next build && node ./scripts/export-static.mjs",
+    "export": "npm run build:static",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve:static": "npx serve out"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
